@@ -37,22 +37,23 @@ namespace ResourceMonitor
             }
         }
 
-        private void OpenSettings(object sender, RoutedEventArgs e)
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
             if (this.settingsWindow == null)
             {
                 this.settingsWindow = new SettingsWindow();
                 this.settingsWindow.Show();
-            } 
+            }
             else
             {
                 this.settingsWindow.Activate();
             }
-        }
-
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
