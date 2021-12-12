@@ -14,9 +14,7 @@
     </Grid>
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="画像を変更"/>
-            <Separator/>
-            <MenuItem Header="設定" Click="OpenSettings"/>
+            <MenuItem Header="設定" Name="OpenSettings" Click="OpenSettings"/>
             <Separator/>
             <MenuItem Header="終了" Name="Quit" Click="Quit_Click"/>
         </ContextMenu>
