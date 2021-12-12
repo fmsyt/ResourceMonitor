@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ResourceMonitor
+namespace ResourceMonitor.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainView : Window
     {
-        protected SettingsWindow? settingsWindow = null;
+        protected SettingsView? settingsWindow = null;
 
-        public MainWindow()
+        public MainView()
         {
             InitializeComponent();
         }
@@ -45,9 +45,9 @@ namespace ResourceMonitor
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (this.settingsWindow == null)
+            if (settingsWindow == null)
             {
-                this.settingsWindow = new SettingsWindow();
+                this.settingsWindow = new SettingsView();
                 this.settingsWindow.Show();
             }
             else

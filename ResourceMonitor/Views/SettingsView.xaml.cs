@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ResourceMonitor
+namespace ResourceMonitor.Views
 {
     /// <summary>
-    /// SettingsWindow.xaml の相互作用ロジック
+    /// SettingsView.xaml の相互作用ロジック
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class SettingsView : Window
     {
-        public SettingsWindow()
+        public SettingsView()
         {
             InitializeComponent();
         }
