@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResourceMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True">
 
 
     <Grid>
@@ -15,6 +17,8 @@
             <MenuItem Header="画像を変更"/>
             <Separator/>
             <MenuItem Header="設定" Click="OpenSettings"/>
+            <Separator/>
+            <MenuItem Header="終了" Name="Quit" Click="Quit_Click"/>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

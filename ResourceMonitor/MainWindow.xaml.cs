@@ -49,5 +49,10 @@ namespace ResourceMonitor
                 this.settingsWindow.Activate();
             }
         }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
