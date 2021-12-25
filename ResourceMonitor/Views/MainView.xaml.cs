@@ -55,5 +55,10 @@ namespace ResourceMonitor.Views
                 this.settingsWindow.Activate();
             }
         }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
