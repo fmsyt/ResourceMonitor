@@ -9,7 +9,7 @@ namespace ResourceMonitor.Models.Resources
 {
     internal class Memory : SingletonResource<Memory>
     {
-        public override int Current()
+        public override float Current()
         {
             throw new NotImplementedException();
         }

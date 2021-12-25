@@ -25,6 +25,9 @@ namespace ResourceMonitor.Views
         public MainView()
         {
             InitializeComponent();
+
+            var view = new BaseComponentView();
+            this.MainPanel.Children.Add(view);
         }
 
         protected override void OnClosed(EventArgs e)

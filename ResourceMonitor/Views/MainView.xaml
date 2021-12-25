@@ -11,10 +11,8 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         ResizeMode="CanResizeWithGrip">
 
+    <StackPanel x:Name="MainPanel"></StackPanel>
 
-    <Grid>
-           
-    </Grid>
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="設定" Name="OpenSettings" Click="OpenSettings_Click"/>

@@ -8,9 +8,9 @@ namespace ResourceMonitor.Models
 {
     internal abstract class SingletonResource<T> where T : SingletonResource<T>, new() 
     { 
-        protected static T _instance = new();
+        protected static T _instance = new T();
         public static SingletonResource<T> Instance { get { return _instance; } }
 
-        public abstract int Current();
+        public abstract float Current();
     }
 }
