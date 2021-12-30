@@ -1,5 +1,6 @@
 ﻿using ResourceMonitor.Models;
 using ResourceMonitor.Models.Resources;
+using ResourceMonitor.ViewModels.Monitor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,21 +27,33 @@ namespace ResourceMonitor.Views
     {
         private DispatcherTimer? _timer = null;
 
+        private MemoryViewModel memory;
+
         private Label label = new Label();
         private Label current = new Label();
+
         public BaseComponentView()
         {
             InitializeComponent();
+
+            this.memory = new MemoryViewModel();
+
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
             label.Content = "CPU";
-            current.Content = 0;
+            current.Content = Cpu.Instance.Current();
 
             Grid.SetColumn(label, 0);
             Grid.SetColumn(current, 1);
 
+            Grid.SetColumn(memory.Label, 2);
+            Grid.SetColumn(memory.Current, 3);
+
             this.Panel.Children.Add(label);
             this.Panel.Children.Add(current);
+
+            this.Panel.Children.Add(memory.Label);
+            this.Panel.Children.Add(memory.Current);
         }
 
         private void BaseComponentView_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -74,6 +87,7 @@ namespace ResourceMonitor.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             SetupTimer();
+            this.memory.SetupTimer();
         }
     }
 }
