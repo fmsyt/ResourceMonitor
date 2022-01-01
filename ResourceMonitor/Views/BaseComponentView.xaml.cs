@@ -39,19 +39,25 @@ namespace ResourceMonitor.Views
 
             Grid.SetRow(cpu.Label, 0);
             Grid.SetRow(cpu.Current, 0);
+            Grid.SetRow(cpu.Chart, 0);
             Grid.SetColumn(cpu.Label, 0);
             Grid.SetColumn(cpu.Current, 1);
+            Grid.SetColumn(cpu.Chart, 2);
 
             Grid.SetRow(memory.Label, 1);
             Grid.SetRow(memory.Current, 1);
+            Grid.SetRow(memory.Chart, 1);
             Grid.SetColumn(memory.Label, 0);
             Grid.SetColumn(memory.Current, 1);
+            Grid.SetColumn(memory.Chart, 2);
 
             this.Panel.Children.Add(cpu.Label);
             this.Panel.Children.Add(cpu.Current);
+            this.Panel.Children.Add(cpu.Chart);
 
             this.Panel.Children.Add(memory.Label);
             this.Panel.Children.Add(memory.Current);
+            this.Panel.Children.Add(memory.Chart);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

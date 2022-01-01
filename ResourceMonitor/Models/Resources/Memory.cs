@@ -35,8 +35,8 @@ namespace ResourceMonitor.Models.Resources
             foreach (ManagementObject mo in moc)
             {
 
-                var freePhysicalMemory = float.Parse(mo["FreePhysicalMemory"].ToString());
-                var totalVisibleMemorySize = float.Parse(mo["TotalVisibleMemorySize"].ToString());
+                var freePhysicalMemory = float.Parse(mo["FreePhysicalMemory"].ToString() ?? "0");
+                var totalVisibleMemorySize = float.Parse(mo["TotalVisibleMemorySize"].ToString() ?? "0");
 
                 result = 1 - freePhysicalMemory / totalVisibleMemorySize;
                 mo.Dispose();

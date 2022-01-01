@@ -48,7 +48,7 @@ namespace ResourceMonitor.Views
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (settingsWindow == null)
+            if (settingsWindow == null || !settingsWindow.IsActive)
             {
                 this.settingsWindow = new SettingsView();
                 this.settingsWindow.Show();

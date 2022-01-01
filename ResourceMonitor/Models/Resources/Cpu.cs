@@ -32,7 +32,7 @@ namespace ResourceMonitor.Models.Resources
             float[] vs = new float[cpuCounters.Length];
             for (int i = 0; i < cpuCounters.Length; i++)
             {
-                vs[i] = cpuCounters[i].NextValue();
+                vs[i] = cpuCounters[i].NextValue() / 100;
             }
 
             return vs;

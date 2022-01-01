@@ -8,8 +8,8 @@ namespace ResourceMonitor.Models
 {
     internal class Config
     {
-        protected static int capacity;
-        public static int Capacity { get { return capacity; } }
+        public static int Capacity { get; set; } = 60;
+        public static string LabelFormat { get; set; } = "0%";
 
         public Config()
         {
@@ -23,7 +23,7 @@ namespace ResourceMonitor.Models
 
         public static void SetDefault()
         {
-            capacity = 16;
+            Capacity = 60;
         }
     }
 }
