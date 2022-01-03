@@ -126,7 +126,7 @@ namespace ResourceMonitor.Models
             foreach (var prop in instance.GetType().GetProperties())
             {
                 var _v = weatherForecast[prop.Name];
-                var v = Convert.ChangeType(_v.ToString(), prop.PropertyType);
+                var v = Convert.ChangeType(_v, prop.PropertyType);
                 prop.SetValue(instance, v);
             }
 

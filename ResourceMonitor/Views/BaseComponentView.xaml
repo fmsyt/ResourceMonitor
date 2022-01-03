@@ -26,9 +26,6 @@
                 <Setter Property="PointGeometrySize" Value="0" />
                 <Setter Property="LineSmoothness" Value="0" />
             </Style>
-            <Style TargetType="lvc:Separator">
-                <Setter Property="Stroke" Value="#4effffff"/>
-            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

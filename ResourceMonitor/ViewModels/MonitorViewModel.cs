@@ -48,7 +48,8 @@ namespace ResourceMonitor.ViewModels
             Chart.AxisX.Add(new Axis
             {
                 LabelFormatter = (v) => null,
-                Separator = new LiveCharts.Wpf.Separator { Step = 10 },
+                ShowLabels = false,
+                IsEnabled = false,
             });
 
             Chart.AxisY.Clear();
@@ -101,7 +102,6 @@ namespace ResourceMonitor.ViewModels
         public void UpdateCurrentContent(object sender, EventArgs e)
         {
             var current = resource.Current();
-            var format = Config.Resource[resource].Format;
             Current.Content = current.ToString(Config.Resource[resource].Format);
 
             lineSeries.Values.Add(new MeasureModel
@@ -116,7 +116,7 @@ namespace ResourceMonitor.ViewModels
 
     class MeasureModel
     {
-        public double Count { get; set; } = 0;
-        public double Value { get; set; } = 0;
+        public float Count { get; set; } = 0;
+        public float Value { get; set; } = 0;
     }
 }

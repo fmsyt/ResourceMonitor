@@ -37,10 +37,10 @@ namespace ResourceMonitor.Views
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
-            var list = new List<List<ContentControl>>();
+            var list = new List<List<ContentControl?>>();
 
-            list.Add(new List<ContentControl>() { cpu.Label, cpu.Current, cpu.Chart });
-            list.Add(new List<ContentControl>() { memory.Label, memory.Current, memory.Chart });
+            list.Add(new List<ContentControl?>() { cpu.Label, cpu.Current, cpu.Chart });
+            list.Add(new List<ContentControl?>() { memory.Label, memory.Current, memory.Chart });
 
             int col = 0, row = 0;
             foreach (var rows in list)
@@ -48,11 +48,14 @@ namespace ResourceMonitor.Views
                 col = 0;
                 foreach (var control in rows)
                 {
-                    var wrapedControl = Wrap(control);
-                    Grid.SetRow(wrapedControl, row);
-                    Grid.SetColumn(wrapedControl, col);
+                    if (control != null)
+                    {
+                        var wrapedControl = Wrap(control);
+                        Grid.SetRow(wrapedControl, row);
+                        Grid.SetColumn(wrapedControl, col);
 
-                    this.Panel.Children.Add(wrapedControl);
+                        this.Panel.Children.Add(wrapedControl);
+                    }
 
                     col++;
                 }
