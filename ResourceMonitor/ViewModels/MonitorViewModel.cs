@@ -28,15 +28,8 @@ namespace ResourceMonitor.ViewModels
             Initialization();
         }
 
-
-        public MonitorViewModel(string labelContent)
+        protected void Initialization()
         {
-            Initialization(labelContent);
-        }
-
-        protected void Initialization(string? labelContent = null)
-        {
-            Label.Content = labelContent;
             Current.Content = resource.Current().ToString(Config.Resource[resource].Format); ;
 
             Chart.Series.Clear();
@@ -61,9 +54,7 @@ namespace ResourceMonitor.ViewModels
                 IsEnabled = false,
             });
 
-            var mapper = Mappers.Xy<MeasureModel>()
-                .X(x => x.Count)
-                .Y(x => x.Value);
+            var mapper = Mappers.Xy<MeasureModel>().Y(x => x.Value);
 
             lineSeries.PointGeometrySize = 0;
             lineSeries.LineSmoothness = 0;
@@ -73,14 +64,11 @@ namespace ResourceMonitor.ViewModels
 
             Chart.Series.Add(lineSeries);
 
-            int count = 0;
             var list = new List<MeasureModel>(Config.Resource[resource].Capacity);
             for (int i = 0; i < Config.Resource[resource].Capacity - 1; i++)
             {
-                list.Add(new MeasureModel { Count = count++ });
+                list.Add(new MeasureModel());
             }
-
-            resource.Count = count;
 
             lineSeries.Values.AddRange(list);
         }
@@ -101,22 +89,21 @@ namespace ResourceMonitor.ViewModels
 
         public void UpdateCurrentContent(object sender, EventArgs e)
         {
+            var config = Config.Resource[resource];
+            Label.Content = config.Label;
+
             var current = resource.Current();
-            Current.Content = current.ToString(Config.Resource[resource].Format);
+            Current.Content = current.ToString(config.Format);
 
-            lineSeries.Values.Add(new MeasureModel
-            {
-                Count = resource.Count++,
-                Value = current * 100
-            });
-
+            lineSeries.Values.Add(new MeasureModel(current * 100));
             lineSeries.Values.RemoveAt(0);
         }
     }
 
     class MeasureModel
     {
-        public float Count { get; set; } = 0;
         public float Value { get; set; } = 0;
+        public MeasureModel() { }
+        public MeasureModel(float value) { Value = value; }
     }
 }

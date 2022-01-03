@@ -39,6 +39,7 @@ namespace ResourceMonitor.Models
 
         private Config()
         {
+            configResourceMemory.Label = "Mem";
             Initalization();
         }
 
@@ -51,8 +52,9 @@ namespace ResourceMonitor.Models
 
         public void Save()
         {
-            General.Save();
             Cpu.Save();
+            Memory.Save();
+            General.Save();
         }
     }
 
@@ -119,10 +121,6 @@ namespace ResourceMonitor.Models
             };
 
             JObject weatherForecast = JObject.Parse(jsonString);
-            var forecast = JsonSerializer.Deserialize<T>(jsonString, options);
-
-            var t = instance.GetType();
-
             foreach (var prop in instance.GetType().GetProperties())
             {
                 var _v = weatherForecast[prop.Name];
@@ -130,7 +128,7 @@ namespace ResourceMonitor.Models
                 prop.SetValue(instance, v);
             }
 
-            Console.WriteLine(jsonString);
+            // Console.WriteLine(jsonString);
 
         }
     }
