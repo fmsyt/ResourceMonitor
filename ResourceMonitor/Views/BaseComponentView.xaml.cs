@@ -37,27 +37,38 @@ namespace ResourceMonitor.Views
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
-            Grid.SetRow(cpu.Label, 0);
-            Grid.SetRow(cpu.Current, 0);
-            Grid.SetRow(cpu.Chart, 0);
-            Grid.SetColumn(cpu.Label, 0);
-            Grid.SetColumn(cpu.Current, 1);
-            Grid.SetColumn(cpu.Chart, 2);
+            var list = new List<List<ContentControl>>();
 
-            Grid.SetRow(memory.Label, 1);
-            Grid.SetRow(memory.Current, 1);
-            Grid.SetRow(memory.Chart, 1);
-            Grid.SetColumn(memory.Label, 0);
-            Grid.SetColumn(memory.Current, 1);
-            Grid.SetColumn(memory.Chart, 2);
+            list.Add(new List<ContentControl>() { cpu.Label, cpu.Current, cpu.Chart });
+            list.Add(new List<ContentControl>() { memory.Label, memory.Current, memory.Chart });
 
-            this.Panel.Children.Add(cpu.Label);
-            this.Panel.Children.Add(cpu.Current);
-            this.Panel.Children.Add(cpu.Chart);
+            int col = 0, row = 0;
+            foreach (var rows in list)
+            {
+                col = 0;
+                foreach (var control in rows)
+                {
+                    var wrapedControl = Wrap(control);
+                    Grid.SetRow(wrapedControl, row);
+                    Grid.SetColumn(wrapedControl, col);
 
-            this.Panel.Children.Add(memory.Label);
-            this.Panel.Children.Add(memory.Current);
-            this.Panel.Children.Add(memory.Chart);
+                    this.Panel.Children.Add(wrapedControl);
+
+                    col++;
+                }
+                row++;
+            }
+        }
+
+        private static Border Wrap(ContentControl? control)
+        {
+            var border = new Border();
+            if (control != null)
+            {
+                border.Child = control;
+            }
+
+            return border;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

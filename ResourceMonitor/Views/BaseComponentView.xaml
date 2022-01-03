@@ -2,20 +2,35 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:ResourceMonitor.Views"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="128"
-             Background="#cc051014"
              >
     <Grid x:Name="Panel">
         <Grid.Resources>
             <Style TargetType="Label">
                 <Setter Property="Foreground" Value="#CDDDDD"/>
             </Style>
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Background" Value="#cc051014"/>
+            </Style>
+
+            <Style TargetType="lvc:LineSeries">
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Stroke" Value="#83c9f4" />
+                <Setter Property="Fill" Value="#4ed9f0ff" />
+                <Setter Property="PointGeometrySize" Value="0" />
+                <Setter Property="LineSmoothness" Value="0" />
+            </Style>
+            <Style TargetType="lvc:Separator">
+                <Setter Property="Stroke" Value="#4effffff"/>
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
