@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:ResourceMonitor"
         mc:Ignorable="d"
         AllowsTransparency="True"
-        Title="MainWindow" Height="Auto" Width="Auto"
-        WindowStyle="None"
-        SizeToContent="WidthAndHeight"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Background="Transparent"
-        >
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        Title="MainWindow" Height="Auto" Width="Auto"
+        WindowStyle="None">
 
     <StackPanel x:Name="MainPanel"></StackPanel>
 

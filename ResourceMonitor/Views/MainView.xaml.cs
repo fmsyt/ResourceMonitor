@@ -48,7 +48,7 @@ namespace ResourceMonitor.Views
 
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
