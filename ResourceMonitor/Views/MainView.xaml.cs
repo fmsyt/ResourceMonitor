@@ -29,7 +29,10 @@ namespace ResourceMonitor.Views
 
             var view = new BaseComponentView();
             this.MainPanel.Children.Add(view);
-            this.Topmost = Config.Instance.General.Topmost;
+
+            var isTopmost = Config.Instance.General.Topmost; ;
+            this.Topmost = isTopmost;
+            this.ToggleTopmost.IsChecked = isTopmost;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -65,6 +68,16 @@ namespace ResourceMonitor.Views
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void ToggleTopmost_Click(object sender, RoutedEventArgs e)
+        {
+            var isTopmost = this.ToggleTopmost.IsChecked;
+            this.ToggleTopmost.IsChecked = isTopmost;
+            this.Topmost = isTopmost;
+
+            Config.Instance.General.Topmost = isTopmost;
+            Config.Instance.General.Save();
         }
     }
 }

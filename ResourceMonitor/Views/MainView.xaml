@@ -17,7 +17,10 @@
 
     <Window.ContextMenu>
         <ContextMenu>
+            <MenuItem Header="常に手前に表示" Name="ToggleTopmost" Click="ToggleTopmost_Click" IsCheckable="True"/>
+            <!--
             <MenuItem Header="設定" Name="OpenSettings" Click="OpenSettings_Click"/>
+            -->
             <Separator/>
             <MenuItem Header="終了" Name="Quit" Click="Quit_Click"/>
         </ContextMenu>
