@@ -12,7 +12,7 @@ namespace ResourceMonitor.ViewModels.Monitor
     {
         public MemoryViewModel()
         {
-            Initialization("Memory");
+            Initialization("メモリ");
         }
     }
 }

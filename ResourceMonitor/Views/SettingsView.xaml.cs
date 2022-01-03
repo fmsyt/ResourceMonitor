@@ -30,63 +30,18 @@ namespace ResourceMonitor.Views
         public SettingsView()
         {
             InitializeComponent();
+        }
 
-            this.chartCpu.Series.Clear();
-            this.chartCpu.Hoverable = false;
-            this.chartCpu.DisableAnimations = true;
-            this.chartCpu.AxisY.Add(new Axis
-            {
-                MinValue = 0,
-                MaxValue = 100,
-            });
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Config.Instance.Save();
+        }
 
-            var mapper = Mappers.Xy<MeasureModel>()
-                .X(x => x.Count)
-                .Y(x => x.Value);
-
-            var seri = new LineSeries();
-            seri.PointGeometrySize = 0;
-            seri.LineSmoothness = 0;
-
-            Charting.For<MeasureModel>(mapper);
-            seri.Values = new ChartValues<MeasureModel>();
-
-            this.chartCpu.Series.Add(seri);
-
-            var sw = new Stopwatch();
-            sw.Start();
-
-            int count = 0;
-            var list = new List<MeasureModel>(Config.Capacity);
-            for (int i = 0; i < Config.Capacity - 1; i++)
-            {
-                list.Add(new MeasureModel { Count = count++ });
-            }
-
-            seri.Values.AddRange(list);
-
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    seri.Values.Add(new MeasureModel
-                    {
-                        Count = count++,
-                        Value = Cpu.Instance.Current() * 100
-                    });
-
-                    seri.Values.RemoveAt(0);
-                    
-                    Thread.Sleep(1000);
-                }
-            });
-
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+            Config.Instance.General.Load();
+            this.Owner.Topmost = Config.Instance.General.Topmost;
+            this.Owner.Show();
         }
     }
-}
-
-class MeasureModel
-{
-    public double Count { get; set; } = 0;
-    public double Value { get; set; } = 0;
 }

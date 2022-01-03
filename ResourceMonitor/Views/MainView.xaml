@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResourceMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        WindowStyle="None"
         AllowsTransparency="True"
+        Title="MainWindow" Height="Auto" Width="Auto"
+        WindowStyle="None"
+        SizeToContent="WidthAndHeight"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        ResizeMode="CanResizeWithGrip">
+        Background="Transparent"
+        >
 
     <StackPanel x:Name="MainPanel"></StackPanel>
 

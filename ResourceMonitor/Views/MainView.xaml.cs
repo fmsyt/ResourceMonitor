@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResourceMonitor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace ResourceMonitor.Views
 
             var view = new BaseComponentView();
             this.MainPanel.Children.Add(view);
+            this.Topmost = Config.Instance.General.Topmost;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -51,6 +53,7 @@ namespace ResourceMonitor.Views
             if (settingsWindow == null || !settingsWindow.IsActive)
             {
                 this.settingsWindow = new SettingsView();
+                this.settingsWindow.Owner = this;
                 this.settingsWindow.Show();
             }
             else

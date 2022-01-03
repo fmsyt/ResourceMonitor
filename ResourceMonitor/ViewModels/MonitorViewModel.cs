@@ -37,12 +37,12 @@ namespace ResourceMonitor.ViewModels
         protected void Initialization(string? labelContent = null)
         {
             Label.Content = labelContent;
-            Current.Content = resource.Current().ToString(Config.LabelFormat); ;
+            Current.Content = resource.Current().ToString(Config.Resource[resource].Format); ;
 
             Chart.Series.Clear();
             Chart.Hoverable = false;
             Chart.DisableAnimations = true;
-            // Chart.DataTooltip = null;
+            Chart.DataTooltip = null;
 
             Chart.AxisX.Clear();
             Chart.AxisX.Add(new Axis
@@ -73,8 +73,8 @@ namespace ResourceMonitor.ViewModels
             Chart.Series.Add(lineSeries);
 
             int count = 0;
-            var list = new List<MeasureModel>(Config.Capacity);
-            for (int i = 0; i < Config.Capacity - 1; i++)
+            var list = new List<MeasureModel>(Config.Resource[resource].Capacity);
+            for (int i = 0; i < Config.Resource[resource].Capacity - 1; i++)
             {
                 list.Add(new MeasureModel { Count = count++ });
             }
@@ -101,8 +101,8 @@ namespace ResourceMonitor.ViewModels
         public void UpdateCurrentContent(object sender, EventArgs e)
         {
             var current = resource.Current();
-            var format = Config.LabelFormat;
-            Current.Content = current.ToString(Config.LabelFormat);
+            var format = Config.Resource[resource].Format;
+            Current.Content = current.ToString(Config.Resource[resource].Format);
 
             lineSeries.Values.Add(new MeasureModel
             {

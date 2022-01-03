@@ -5,8 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ResourceMonitor.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="32" d:DesignWidth="128">
+             d:DesignHeight="32" d:DesignWidth="128"
+             Background="#cc051014"
+             >
     <Grid x:Name="Panel">
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="#CDDDDD"/>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

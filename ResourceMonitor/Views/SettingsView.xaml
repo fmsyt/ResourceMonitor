@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResourceMonitor.Views"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="SettingsView" Height="450" Width="800">
     <StackPanel>
-        <lvc:CartesianChart x:Name="chartCpu" Height="400"/>
+        <Button x:Name="Save" Click="Save_Click">Save</Button>
+        <Button x:Name="Load" Click="Load_Click">Load</Button>
     </StackPanel>
 </Window>
