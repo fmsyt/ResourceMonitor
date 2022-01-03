@@ -7,9 +7,12 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <Configurations>Debug;Release</Configurations>
-    <DebugType>full</DebugType>
+    <DebugType>none</DebugType>
     <PackageIcon>icon_x128.png</PackageIcon>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <Company>yotta-lab</Company>
+    <Authors>motsuni</Authors>
+    <PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +29,13 @@
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
