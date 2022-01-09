@@ -43,6 +43,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -59,6 +67,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -166,19 +190,19 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ResourceMonitor"
-        "ProductCode" = "8:{74F4835F-F766-48CD-9AF1-9A98DDC7E979}"
-        "PackageCode" = "8:{A53F19C7-7B13-4207-BC26-B5A0DF97D2AA}"
+        "ProductCode" = "8:{5761C5BE-3925-4FDA-8B4F-0C19158A4A15}"
+        "PackageCode" = "8:{2C8281A3-2454-4AA6-B538-8B6A43B9A9AF}"
         "UpgradeCode" = "8:{B5FC516A-2A58-4AF8-B969-91B5938A5F33}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:yotta-lab"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/fmsyt/ResourceMonitor/issues"
-        "Title" = "8:Setup"
+        "Title" = "8:SetupResourceMonitor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:motsuni"
         "Keywords" = "8:"
