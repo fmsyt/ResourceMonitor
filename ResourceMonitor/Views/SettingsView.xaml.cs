@@ -34,12 +34,11 @@ namespace ResourceMonitor.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Config.Instance.Save();
+            Config.Instance.SaveAll();
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
-            Config.Instance.General.Load();
             this.Owner.Topmost = Config.Instance.General.Topmost;
             this.Owner.Show();
         }
