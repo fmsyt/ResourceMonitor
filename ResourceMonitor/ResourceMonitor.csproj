@@ -13,7 +13,7 @@
     <Company>yotta-lab</Company>
     <Authors>motsuni</Authors>
     <PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

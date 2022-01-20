@@ -87,7 +87,7 @@ namespace ResourceMonitor.ViewModels
             if (_timer != null) { _timer.Stop(); }
         }
 
-        public void UpdateCurrentContent(object sender, EventArgs e)
+        public void UpdateCurrentContent(object? sender, EventArgs e)
         {
             var config = Config.Resource[resource];
             Label.Content = config.Label;
