@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,7 +23,14 @@ namespace ResourceMonitor.Views
     /// </summary>
     public partial class MainView : Window
     {
+        protected int GWL_STYLE = -16;
+        protected int WS_OVERLAPPEDWINDOW = 0;
+        protected int WS_THICKFRAME = 0x00040000;
+
         protected SettingsView? settingsWindow = null;
+
+        [DllImport("user32")]
+        protected static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwLong);
 
         public MainView()
         {
@@ -33,6 +42,8 @@ namespace ResourceMonitor.Views
             var isTopmost = Config.Instance.General.Topmost; ;
             this.Topmost = isTopmost;
             this.ToggleTopmost.IsChecked = isTopmost;
+
+            this.Loaded += MainWindow_Loaded;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -45,6 +56,10 @@ namespace ResourceMonitor.Views
             }
         }
 
+        protected void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            _ = SetWindowLong(new WindowInteropHelper(this).Handle, GWL_STYLE, WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME);
+        }
 
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
