@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceMonitor", "ResourceMonitor\ResourceMonitor.csproj", "{23A7D0D9-E35D-4A97-958E-D107E663D22A}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{298A08B9-0FA2-414A-AA0F-4922B1FE4DA2}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ResourceMonitorSetup", "ResourceMonitorSetup\ResourceMonitorSetup.vdproj", "{C2485630-C5AE-4D5A-BE36-CFDE4E510FC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +17,8 @@ Global
 		{23A7D0D9-E35D-4A97-958E-D107E663D22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23A7D0D9-E35D-4A97-958E-D107E663D22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23A7D0D9-E35D-4A97-958E-D107E663D22A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{298A08B9-0FA2-414A-AA0F-4922B1FE4DA2}.Debug|Any CPU.ActiveCfg = Debug
-		{298A08B9-0FA2-414A-AA0F-4922B1FE4DA2}.Release|Any CPU.ActiveCfg = Release
-		{298A08B9-0FA2-414A-AA0F-4922B1FE4DA2}.Release|Any CPU.Build.0 = Release
+		{C2485630-C5AE-4D5A-BE36-CFDE4E510FC1}.Debug|Any CPU.ActiveCfg = Debug
+		{C2485630-C5AE-4D5A-BE36-CFDE4E510FC1}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

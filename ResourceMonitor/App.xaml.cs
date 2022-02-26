@@ -17,7 +17,7 @@ namespace ResourceMonitor
         {
             base.OnStartup(e);
 
-            var icon = GetResourceStream(new Uri("Assets/icon.ico", UriKind.Relative)).Stream;
+            var icon = GetResourceStream(new Uri("Resources/icon.ico", UriKind.Relative)).Stream;
             var menu = new System.Windows.Forms.ContextMenuStrip();
             menu.Items.Add("終了", null, Exit_Click);
 

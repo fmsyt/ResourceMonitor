@@ -9,7 +9,7 @@
     <Configurations>Debug;Release</Configurations>
     <DebugType>none</DebugType>
     <PackageIcon>icon_x128.png</PackageIcon>
-    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <Company>yotta-lab</Company>
     <Authors>motsuni</Authors>
     <PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Resources\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\icon_x128.png">
+    <None Update="Resources\icon_x128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
