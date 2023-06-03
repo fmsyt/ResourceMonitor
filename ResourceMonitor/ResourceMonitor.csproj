@@ -1,62 +1,71 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-    <Configurations>Debug;Release</Configurations>
-    <DebugType>none</DebugType>
-    <PackageIcon>icon_x128.png</PackageIcon>
-    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
-    <Company>yotta-lab</Company>
-    <Authors>motsuni</Authors>
-    <PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
-    <Version>1.2.0</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Configurations>Debug;Release</Configurations>
+		<DebugType>none</DebugType>
+		<PackageIcon>icon_x128.png</PackageIcon>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<Company>yotta-lab</Company>
+		<Authors>motsuni</Authors>
+		<PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
+		<Version>1.2.0</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="icon.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="icon.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
-    <PackageReference Include="System.Management" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Management" Version="6.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\icon.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\icon.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="settings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Resources\icon_x128.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Resources\icon_x128.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
 </Project>

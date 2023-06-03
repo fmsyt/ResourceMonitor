@@ -39,7 +39,7 @@ namespace ResourceMonitor.Views
             var view = new BaseComponentView();
             this.MainPanel.Children.Add(view);
 
-            var isTopmost = Config.Instance.General.Topmost; ;
+            var isTopmost = Config.Instance.General.Topmost;
             this.Topmost = isTopmost;
             this.ToggleTopmost.IsChecked = isTopmost;
 

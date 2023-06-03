@@ -25,6 +25,8 @@ namespace ResourceMonitor.Views
     /// </summary>
     public partial class BaseComponentView : UserControl
     {
+        protected DispatcherTimer? _timer = null;
+
         private readonly CpuViewModel cpu;
         private readonly MemoryViewModel memory;
 
@@ -74,10 +76,27 @@ namespace ResourceMonitor.Views
             return border;
         }
 
+        public void SetupTimer()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = new TimeSpan(0, 0, 1);
+            _timer.Tick += new EventHandler((obj, s) =>
+            {
+                this.cpu.UpdateCurrentContent();
+                this.memory.UpdateCurrentContent();
+            });
+
+            _timer.Start();
+        }
+
+        public void StopTimer()
+        {
+            if (_timer != null) { _timer.Stop(); }
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.cpu.SetupTimer();
-            this.memory.SetupTimer();
+            this.SetupTimer();
         }
     }
 }

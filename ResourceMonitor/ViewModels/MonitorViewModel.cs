@@ -17,7 +17,6 @@ namespace ResourceMonitor.ViewModels
     internal class MonitorViewModel<I> where I : SingletonResource<I>, IResource, new()
     {
         protected SingletonResource<I> resource = SingletonResource<I>.Instance;
-        protected DispatcherTimer? _timer = null;
 
         public Label Label { get; protected set; } = new Label();
         public Label Current { get; protected set; } = new Label();
@@ -74,20 +73,8 @@ namespace ResourceMonitor.ViewModels
         }
 
 
-        public void SetupTimer()
-        {
-            _timer = new DispatcherTimer();
-            _timer.Interval = new TimeSpan(0, 0, 1);
-            _timer.Tick += new EventHandler(UpdateCurrentContent);
-            _timer.Start();
-        }
 
-        public void StopTimer()
-        {
-            if (_timer != null) { _timer.Stop(); }
-        }
-
-        public void UpdateCurrentContent(object? sender, EventArgs e)
+        public void UpdateCurrentContent()
         {
             var config = Config.Resource[resource];
             Label.Content = config.Label;
