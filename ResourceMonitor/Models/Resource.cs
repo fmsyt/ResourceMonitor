@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models
 {
-    internal abstract class SingletonResource<T> where T : SingletonResource<T>, IResource, new() 
+    internal abstract class Resource<T> where T : Resource<T>, new() 
     {
-        protected static T _instance = new T();
-        public static SingletonResource<T> Instance { get { return _instance; } }
+        protected static T _instance = new();
+        public static Resource<T> Instance { get { return _instance; } }
         public int Count { get; set; } = 0;
         public abstract float Current();
         

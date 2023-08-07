@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
-    internal class Memory : SingletonResource<Memory>, IResource
+    internal class Memory : Resource<Memory>
     {
-
         protected ManagementClass mc;
         protected ManagementObjectCollection? moc = null;
 

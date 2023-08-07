@@ -14,9 +14,9 @@ using System.Windows.Threading;
 
 namespace ResourceMonitor.ViewModels
 {
-    internal class MonitorViewModel<I> where I : SingletonResource<I>, IResource, new()
+    internal class MonitorViewModel<I> where I : Resource<I>, new()
     {
-        protected SingletonResource<I> resource = SingletonResource<I>.Instance;
+        protected Resource<I> resource = Resource<I>.Instance;
 
         public Label Label { get; protected set; } = new Label();
         public Label Current { get; protected set; } = new Label();
