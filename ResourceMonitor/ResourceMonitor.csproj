@@ -13,7 +13,7 @@
 		<Company>yotta-lab</Company>
 		<Authors>motsuni</Authors>
 		<PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,9 +21,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Iot.Device.Bindings" Version="3.0.0" />
 		<PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="System.Management" Version="6.0.0" />
+		<PackageReference Include="System.Management" Version="7.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>

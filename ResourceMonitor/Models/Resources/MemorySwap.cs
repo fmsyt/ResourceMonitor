@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
-    internal class Memory : Resource
+    internal class MemorySwap : Resource
     {
         protected ManagementClass mc;
         protected ManagementObjectCollection? moc = null;
 
-        public Memory()
+        public MemorySwap()
         {
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 
-        ~Memory()
+        ~MemorySwap()
         {
             if (moc != null)
             {
@@ -34,10 +34,10 @@ namespace ResourceMonitor.Models.Resources
             foreach (ManagementObject mo in moc)
             {
 
-                var freePhysicalMemory = float.Parse(mo["FreePhysicalMemory"].ToString() ?? "0");
-                var totalVisibleMemorySize = float.Parse(mo["TotalVisibleMemorySize"].ToString() ?? "0");
+                var free = float.Parse(mo["FreeSpaceInPagingFiles"].ToString() ?? "0");
+                var total = float.Parse(mo["SizeStoredInPagingFiles"].ToString() ?? "0");
 
-                result = 1 - freePhysicalMemory / totalVisibleMemorySize;
+                result = 1 - free / total;
                 mo.Dispose();
             }
 

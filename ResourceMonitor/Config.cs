@@ -1,4 +1,5 @@
 ﻿using ResourceMonitor.Configs;
+using ResourceMonitor.Models;
 using ResourceMonitor.Models.Resources;
 using System;
 using System.Collections.Generic;
@@ -19,33 +20,54 @@ namespace ResourceMonitor
 
         public static Config Instance { get { return _instance; } }
 
-        protected static readonly Dictionary<Object, ConfigResourceBase> _resource;
+        protected readonly Dictionary<string, ConfigResourceBase> _configDictionary;
+        public Dictionary<string, ConfigResourceBase> Resource { get { return _configDictionary; } }
+
         protected readonly ConfigGeneral configGeneral = new();
-        protected readonly ConfigCpu configCpu = new();
-        protected readonly ConfigMemory configMemory = new();
-
-        public static Dictionary<Object, ConfigResourceBase> Resource { get { return _resource; } }
         public ConfigGeneral General { get { return configGeneral; } }
-        public ConfigCpu Cpu { get { return configCpu; } }
-        public ConfigMemory Memory { get { return configMemory; } }
 
-        static Config()
+        
+        private Config()
         {
-            _resource = new Dictionary<Object, ConfigResourceBase>()
+            _configDictionary = new Dictionary<string, ConfigResourceBase>()
             {
-                { Models.Resources.Cpu.Instance, new ConfigCpu() },
-                { Models.Resources.Memory.Instance, new ConfigMemory() },
+                { "Cpu", new ConfigCpu() },
+                { "Memory", new ConfigMemory() },
+                { "MemorySwap", new ConfigMemorySwap() },
             };
         }
 
-        private Config()
+        public ConfigResourceBase Get(string name)
         {
+            if (_configDictionary.ContainsKey(name))
+            {
+                return _configDictionary[name];
+            }
+
+            var resouce = new ConfigResourceBase();
+            resouce.Label = name;
+
+            return resouce;
         }
+
+        public ConfigResourceBase FromResource(Resource resouce)
+        {
+            var typeName = resouce.GetType().Name;
+            if (_configDictionary.ContainsKey(typeName))
+            {
+                return _configDictionary[typeName];
+            }
+
+            var baseConfig = new ConfigResourceBase();
+            baseConfig.Label = typeName;
+
+            return baseConfig;
+        }
+
+        
 
         public void SaveAll()
         {
-            Cpu.Save();
-            Memory.Save();
             General.Save();
         }
     }

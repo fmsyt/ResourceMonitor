@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
-    internal class Cpu : Resource<Cpu>
+    internal class Cpu : Resource
     {
         private PerformanceCounter[] cpuCounters;
 

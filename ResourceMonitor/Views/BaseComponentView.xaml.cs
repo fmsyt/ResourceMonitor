@@ -1,6 +1,7 @@
 ﻿using ResourceMonitor.Models;
 using ResourceMonitor.Models.Resources;
-using ResourceMonitor.ViewModels.Monitor;
+using ResourceMonitor.Properties;
+using ResourceMonitor.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,23 +27,27 @@ namespace ResourceMonitor.Views
     public partial class BaseComponentView : UserControl
     {
         protected DispatcherTimer? _timer = null;
-
-        private readonly CpuViewModel cpu;
-        private readonly MemoryViewModel memory;
+        private readonly List<MonitorViewModel> monitor;
 
         public BaseComponentView()
         {
             InitializeComponent();
 
-            this.cpu = new CpuViewModel();
-            this.memory = new MemoryViewModel();
+            this.monitor = new()
+            {
+                new MonitorViewModel(new Cpu()),
+                new MonitorViewModel(new Memory()),
+                new MonitorViewModel(new MemorySwap())
+            };
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
             var list = new List<List<ContentControl?>>();
 
-            list.Add(new List<ContentControl?>() { cpu.Label, cpu.Current, cpu.Chart });
-            list.Add(new List<ContentControl?>() { memory.Label, memory.Current, memory.Chart });
+            foreach (var item in this.monitor)
+            {
+                list.Add(new List<ContentControl?>() { item.Label, item.Current, item.Chart });
+            }
 
             int col = 0, row = 0;
             foreach (var rows in list)
@@ -50,6 +55,8 @@ namespace ResourceMonitor.Views
                 col = 0;
                 foreach (var control in rows)
                 {
+                    this.Panel.RowDefinitions.Add(new RowDefinition());
+
                     if (control != null)
                     {
                         var wrapedControl = Wrap(control);
@@ -82,8 +89,15 @@ namespace ResourceMonitor.Views
             _timer.Interval = new TimeSpan(0, 0, 1);
             _timer.Tick += new EventHandler((obj, s) =>
             {
-                this.cpu.UpdateCurrentContent();
-                this.memory.UpdateCurrentContent();
+                if (this.monitor == null)
+                {
+                    return;
+                }
+
+                foreach (var item in this.monitor)
+                {
+                    item.UpdateCurrentContent();
+                }
             });
 
             _timer.Start();
@@ -91,7 +105,7 @@ namespace ResourceMonitor.Views
 
         public void StopTimer()
         {
-            if (_timer != null) { _timer.Stop(); }
+            _timer?.Stop();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

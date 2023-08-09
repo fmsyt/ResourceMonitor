@@ -14,22 +14,25 @@ using System.Windows.Threading;
 
 namespace ResourceMonitor.ViewModels
 {
-    internal class MonitorViewModel<I> where I : Resource<I>, new()
+    internal class MonitorViewModel
     {
-        protected Resource<I> resource = Resource<I>.Instance;
+        protected Resource resource;
 
         public Label Label { get; protected set; } = new Label();
         public Label Current { get; protected set; } = new Label();
         public CartesianChart Chart { get; protected set; } = new CartesianChart();
         protected LineSeries lineSeries = new LineSeries();
-        public MonitorViewModel()
+        public MonitorViewModel(Resource resource)
         {
+            this.resource = resource;
             Initialization();
         }
 
         protected void Initialization()
         {
-            Current.Content = resource.Current().ToString(Config.Resource[resource].Format); ;
+            var resource = this.resource;
+
+            Current.Content = resource.Current().ToString(Config.Instance.FromResource(resource).Format);
 
             Chart.Series.Clear();
             Chart.Hoverable = false;
@@ -63,8 +66,8 @@ namespace ResourceMonitor.ViewModels
 
             Chart.Series.Add(lineSeries);
 
-            var list = new List<MeasureModel>(Config.Resource[resource].Capacity);
-            for (int i = 0; i < Config.Resource[resource].Capacity - 1; i++)
+            var list = new List<MeasureModel>(Config.Instance.FromResource(resource).Capacity);
+            for (int i = 0; i < Config.Instance.FromResource(resource).Capacity - 1; i++)
             {
                 list.Add(new MeasureModel());
             }
@@ -76,7 +79,7 @@ namespace ResourceMonitor.ViewModels
 
         public void UpdateCurrentContent()
         {
-            var config = Config.Resource[resource];
+            var config = Config.Instance.FromResource(resource);
             Label.Content = config.Label;
 
             var current = resource.Current();
