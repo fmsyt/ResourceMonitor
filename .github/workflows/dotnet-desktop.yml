@@ -114,4 +114,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\AppxPackages\ResourceMonitor.appinstaller
+        path: ${{ env.Wap_Project_Directory }}\**\*.appinstaller
+        if-no-files-found: error
