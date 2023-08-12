@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceMonitor", "Resource
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "ResourceMonitor.Package", "ResourceMonitor.Package\ResourceMonitor.Package.wapproj", "{2C30D61E-83A3-4933-88EE-32FFE19F65E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceMonitor.Test", "ResourceMonitor.Test\ResourceMonitor.Test.csproj", "{E93AA606-EBD7-4903-839A-0DFBBA11A407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceMonitor.Test", "ResourceMonitor.Test\ResourceMonitor.Test.csproj", "{E93AA606-EBD7-4903-839A-0DFBBA11A407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
