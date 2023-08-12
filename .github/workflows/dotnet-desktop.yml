@@ -2,16 +2,19 @@ name: .NET Core Desktop
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
 
   build:
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    strategy:
+      matrix:
+        targetplatform: [x86, x64]
+
+    runs-on: windows-latest
 
     env:
       Solution_Name: ResourceMonitor.sln
@@ -36,14 +39,15 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     # Execute all unit tests in the solution
-    # - name: Execute unit tests
-    #   run: dotnet test $env:Test_Project_Path
+    - name: Execute unit tests
+      run: dotnet test $env:Test_Project_Path
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: Debug
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
@@ -54,12 +58,13 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxPackageDir=$env:Appx_PackageDir /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:Wap_Project_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxPackageDir=$env:Appx_PackageDir /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Appx_Bundle: Never
         Appx_Package_Build_Mode: SideLoadOnly
         Appx_PackageDir: ${{ env.Wap_Project_Directory }}\AppxPackages
         Configuration: Release
+        TargetPlatform: ${{ matrix.targetplatform }}
 
     # Remove the pfx
     - name: Remove the pfx
@@ -69,6 +74,6 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\**\*.appinstaller
+        name: ResourceMonitorPackage
+        path: ${{ env.Wap_Project_Directory }}\AppxPackages\*.appinstaller
         if-no-files-found: error
