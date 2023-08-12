@@ -101,7 +101,7 @@ jobs:
       env:
         Appx_Bundle: Never
         Appx_Package_Build_Mode: SideLoadOnly
-        Appx_PackageDir: $env:Wap_Project_Directory\AppxPackages
+        Appx_PackageDir: ${{ env:Wap_Project_Directory }}\AppxPackages
         Configuration: Release
         TargetPlatform: ${{ matrix.targetplatform }}
 
