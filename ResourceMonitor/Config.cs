@@ -34,6 +34,7 @@ namespace ResourceMonitor
                 { "Cpu", new ConfigCpu() },
                 { "Memory", new ConfigMemory() },
                 { "MemorySwap", new ConfigMemorySwap() },
+                { "Gpu", new ConfigGpu() },
             };
         }
 

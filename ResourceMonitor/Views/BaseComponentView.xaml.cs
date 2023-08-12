@@ -37,7 +37,8 @@ namespace ResourceMonitor.Views
             {
                 new MonitorViewModel(new Cpu()),
                 new MonitorViewModel(new Memory()),
-                new MonitorViewModel(new MemorySwap())
+                new MonitorViewModel(new MemorySwap()),
+                new MonitorViewModel(new Gpu()),
             };
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
