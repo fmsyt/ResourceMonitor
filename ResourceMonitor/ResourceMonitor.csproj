@@ -15,8 +15,7 @@
 		<PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
 		<Version>1.2.1</Version>
 		<Platforms>AnyCPU;x64;x86</Platforms>
-		<RuntimeIdentifier>win-x86</RuntimeIdentifier>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<ItemGroup>
