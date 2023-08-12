@@ -75,5 +75,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ResourceMonitorPackage
-        path: ${{ env.Wap_Project_Directory }}\AppxPackages\*.appinstaller
+        path: ${{ env.Wap_Project_Directory }}\**\*.appinstaller
         if-no-files-found: error
