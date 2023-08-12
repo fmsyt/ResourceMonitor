@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -10,7 +10,7 @@
 		<DebugType>none</DebugType>
 		<PackageIcon>icon_x128.png</PackageIcon>
 		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
-		<Company>yotta-lab</Company>
+		<Company>yotta-rc.dev</Company>
 		<Authors>motsuni</Authors>
 		<PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
 		<Version>1.2.1</Version>
