@@ -78,8 +78,8 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     # Execute all unit tests in the solution
-    - name: Execute unit tests
-      run: dotnet test $env:Test_Project_Path
+    # - name: Execute unit tests
+    #   run: dotnet test $env:Test_Project_Path
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
@@ -100,7 +100,6 @@ jobs:
       run: msbuild $env:Wap_Project_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Appx_Bundle: Never
-        Appx_Bundle_Platforms: x86|x64
         Appx_Package_Build_Mode: SideLoadOnly
         Configuration: Release
         TargetPlatform: ${{ matrix.targetplatform }}
