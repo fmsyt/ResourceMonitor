@@ -14,6 +14,7 @@ namespace ResourceMonitor.Models.Resources
 
         public Gpu()
         {
+            Label = "GPU";
             //var monitor = new OpenHardwareMonitor();
 
             StartInfo = new ProcessStartInfo

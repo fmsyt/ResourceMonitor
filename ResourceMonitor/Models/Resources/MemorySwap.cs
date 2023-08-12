@@ -15,6 +15,7 @@ namespace ResourceMonitor.Models.Resources
 
         public MemorySwap()
         {
+            Label = "Swap";
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 

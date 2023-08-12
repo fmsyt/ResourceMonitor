@@ -32,7 +32,7 @@ namespace ResourceMonitor.ViewModels
         {
             var resource = this.resource;
 
-            Current.Content = resource.Current().ToString(Config.Instance.FromResource(resource).Format);
+            Current.Content = resource.Current().ToString(resource.Format);
 
             Chart.Series.Clear();
             Chart.Hoverable = false;
@@ -66,8 +66,8 @@ namespace ResourceMonitor.ViewModels
 
             Chart.Series.Add(lineSeries);
 
-            var list = new List<MeasureModel>(Config.Instance.FromResource(resource).Capacity);
-            for (int i = 0; i < Config.Instance.FromResource(resource).Capacity - 1; i++)
+            var list = new List<MeasureModel>(resource.Capacity);
+            for (int i = 0; i < resource.Capacity - 1; i++)
             {
                 list.Add(new MeasureModel());
             }
@@ -79,11 +79,10 @@ namespace ResourceMonitor.ViewModels
 
         public void UpdateCurrentContent()
         {
-            var config = Config.Instance.FromResource(resource);
-            Label.Content = config.Label;
+            Label.Content = resource.Label;
 
             var current = resource.Current();
-            Current.Content = current.ToString(config.Format);
+            Current.Content = current.ToString(resource.Format);
 
             lineSeries.Values.Add(new MeasureModel(current * 100));
             lineSeries.Values.RemoveAt(0);

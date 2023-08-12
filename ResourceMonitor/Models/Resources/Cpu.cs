@@ -13,6 +13,7 @@ namespace ResourceMonitor.Models.Resources
 
         public Cpu()
         {
+            Label = "CPU";
             cpuCounters = new PerformanceCounter[Environment.ProcessorCount];
 
             for (int i = 0; i < cpuCounters.Length; i++)
@@ -20,7 +21,7 @@ namespace ResourceMonitor.Models.Resources
                 cpuCounters[i] = new PerformanceCounter("Processor", "% Processor Time", i.ToString());
             }
         }
-        
+
         public override float Current()
         {
             var result = GetUsage().Average();

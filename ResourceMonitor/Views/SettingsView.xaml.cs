@@ -34,7 +34,7 @@ namespace ResourceMonitor.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Config.Instance.SaveAll();
+
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)

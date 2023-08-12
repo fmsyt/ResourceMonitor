@@ -15,6 +15,7 @@ namespace ResourceMonitor.Models.Resources
 
         public Memory()
         {
+            Label = "Mem";
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 
