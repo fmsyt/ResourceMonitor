@@ -58,13 +58,14 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxPackageDir=$env:Appx_PackageDir /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:Wap_Project_Path /p:Platform=$env:Target_Platform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxPackageDir=$env:Appx_PackageDir /p:AppInstallerUri=$env:App_InstallerUri /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
       env:
         Appx_Bundle: Never
         Appx_Package_Build_Mode: SideLoadOnly
-        Appx_PackageDir: ${{ env.Wap_Project_Directory }}\AppxPackages
+        Appx_PackageDir: AppPackages
+        App_InstallerUri: https://fmsyt.github.io/ResourceMonitor
         Configuration: Release
-        TargetPlatform: ${{ matrix.targetplatform }}
+        Target_Platform: ${{ matrix.targetplatform }}
 
     # Remove the pfx
     - name: Remove the pfx
@@ -75,5 +76,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ResourceMonitorPackage
-        path: ${{ env.Wap_Project_Directory }}\**\*.appinstaller
+        path: ${{ env.Wap_Project_Directory }}\AppPackages
         if-no-files-found: error
