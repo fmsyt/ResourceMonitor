@@ -11,5 +11,11 @@ namespace ResourceMonitor.Models
     {
         public int Count { get; set; } = 0;
         public abstract float Current();
+
+        public void SaveLabel(string label)
+        {
+            Label = label;
+            Save();
+        }
     }
 }

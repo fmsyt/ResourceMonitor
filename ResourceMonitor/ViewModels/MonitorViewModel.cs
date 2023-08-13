@@ -3,6 +3,7 @@ using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using ResourceMonitor.Models;
 using ResourceMonitor.Models.Resources;
+using ResourceMonitor.Views.Component;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,8 +19,8 @@ namespace ResourceMonitor.ViewModels
     {
         protected Resource resource;
 
-        public Label Label { get; protected set; } = new Label();
-        public Label Current { get; protected set; } = new Label();
+        public LabelControl Label { get; protected set; } = new();
+        public Label Current { get; protected set; } = new();
         public CartesianChart Chart { get; protected set; } = new CartesianChart();
         protected LineSeries lineSeries = new LineSeries();
         public MonitorViewModel(Resource resource)
@@ -31,6 +32,9 @@ namespace ResourceMonitor.ViewModels
         protected void Initialization()
         {
             var resource = this.resource;
+
+            Label.label.Content = resource.Label;
+            Label.PostLabelChanged = (label) => resource.SaveLabel(label);
 
             Current.Content = resource.Current().ToString(resource.Format);
 
@@ -79,8 +83,6 @@ namespace ResourceMonitor.ViewModels
 
         public void UpdateCurrentContent()
         {
-            Label.Content = resource.Label;
-
             var current = resource.Current();
             Current.Content = current.ToString(resource.Format);
 
