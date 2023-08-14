@@ -7,10 +7,18 @@ using ResourceMonitor.Configs;
 
 namespace ResourceMonitor.Models
 {
-    internal abstract class Resource : ConfigResourceBase
+    public delegate float CurrentHandler();
+
+    internal class Resource : ConfigResourceBase
     {
+        public CurrentHandler? CurrentHandler = null;
+
         public int Count { get; set; } = 0;
-        public abstract float Current();
+
+        public virtual float Current()
+        {
+            return CurrentHandler != null ? CurrentHandler.Invoke() : 0;
+        }
 
         public void SaveLabel(string label)
         {

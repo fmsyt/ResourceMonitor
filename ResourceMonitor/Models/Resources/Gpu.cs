@@ -10,12 +10,11 @@ namespace ResourceMonitor.Models.Resources
 {
     internal class Gpu : Resource
     {
-        protected ProcessStartInfo StartInfo { get; set; }
+        protected ProcessStartInfo StartInfo;
 
         public Gpu()
         {
             Label = "GPU";
-            //var monitor = new OpenHardwareMonitor();
 
             StartInfo = new ProcessStartInfo
             {
@@ -29,10 +28,21 @@ namespace ResourceMonitor.Models.Resources
 
         public override float Current()
         {
-            Process p = Process.Start(StartInfo);
-            string gpu_usage = p.StandardOutput.ReadToEnd().TrimEnd();
+            try
+            {
+                var p = Process.Start(StartInfo);
+                if (p == null)
+                {
+                    return 0;
+                }
 
-            return float.Parse(gpu_usage) / 100;
+                string gpu_usage = p.StandardOutput.ReadToEnd().TrimEnd();
+
+                return float.Parse(gpu_usage) / 100;
+            } catch
+            {
+                return 0;
+            }
         }
     }
 }

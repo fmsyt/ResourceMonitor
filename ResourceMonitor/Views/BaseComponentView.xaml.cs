@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,6 +41,24 @@ namespace ResourceMonitor.Views
                 new MonitorViewModel(new MemorySwap()),
                 new MonitorViewModel(new Gpu()),
             };
+
+            //// @see https://learn.microsoft.com/ja-jp/windows/win32/cimwin32prov/win32-videocontroller
+            //var searcher = new ManagementObjectSearcher("select * from Win32_VideoController");
+            //foreach (var obj in searcher.Get())
+            //{
+            //    if (obj == null)
+            //    {
+            //        continue;
+            //    }
+
+            //    var resource = new Resource
+            //    {
+            //        Label = (string)obj["SystemName"],
+            //        CurrentHandler = () => (float)(1 - (int)obj["AdapterRAM"] / (int)obj["Availability"])
+            //    };
+
+            //    monitor.Add(new MonitorViewModel(resource));
+            //}
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
