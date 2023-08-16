@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
+    /// <summary>
+    /// CPUパフォーマンスモニタでCPUリソース監視する際の主なカウンターについて
+    /// <see href="https://rainbow-engine.com/perfmon-processer-important-counters"/>
+    /// </summary>
     internal class Cpu : Resource
     {
         private PerformanceCounter[] cpuCounters;
