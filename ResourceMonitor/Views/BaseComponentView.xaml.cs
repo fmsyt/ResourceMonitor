@@ -5,6 +5,7 @@ using ResourceMonitor.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -42,23 +43,34 @@ namespace ResourceMonitor.Views
                 new MonitorViewModel(new Gpu()),
             };
 
-            //// @see https://learn.microsoft.com/ja-jp/windows/win32/cimwin32prov/win32-videocontroller
-            //var searcher = new ManagementObjectSearcher("select * from Win32_VideoController");
-            //foreach (var obj in searcher.Get())
+
+            //// @see https://learn.microsoft.com/ja-jp/windows-hardware/drivers/display/wddm-2-0-and-windows-10
+            //// @see https://devblogs.microsoft.com/directx/gpus-in-the-task-manager/
+            //// @see https://learn.microsoft.com/ja-jp/dotnet/api/system.diagnostics.performancecounter
+            //// @see https://learn.microsoft.com/ja-jp/dotnet/api/system.diagnostics.performancecountercategory
+            //var category = new PerformanceCounterCategory("GPU Engine");
+            //var instanceNames = Array.FindAll(category.GetInstanceNames(), (name) => name.Contains("engtype_3D"));
+
+            //var gpuResouce = new Resource
             //{
-            //    if (obj == null)
-            //    {
-            //        continue;
+            //    Label = "GPU",
+            //    CurrentHandler = () => { 
+
+            //        float baseValue = 0;
+            //        float sum = 0;
+
+            //        foreach (var instanceName in instanceNames)
+            //        {
+            //            var counter = category.GetCounters(instanceName);
+            //            sum += counter.First().NextValue();
+            //            baseValue += counter.First().NextSample().BaseValue;
+            //        }
+
+            //        return sum / baseValue;
             //    }
+            //};
 
-            //    var resource = new Resource
-            //    {
-            //        Label = (string)obj["SystemName"],
-            //        CurrentHandler = () => (float)(1 - (int)obj["AdapterRAM"] / (int)obj["Availability"])
-            //    };
-
-            //    monitor.Add(new MonitorViewModel(resource));
-            //}
+            //this.monitor.Add(new MonitorViewModel(gpuResouce));
 
             this.Loaded += new RoutedEventHandler(UserControl_Loaded);
 
