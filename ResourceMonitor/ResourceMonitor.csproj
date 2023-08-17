@@ -13,7 +13,7 @@
 		<Company>yotta-rc.dev</Company>
 		<Authors>motsuni</Authors>
 		<PackageProjectUrl>https://github.com/fmsyt/ResourceMonitor</PackageProjectUrl>
-		<Version>1.2.1</Version>
+		<Version>1.0.1</Version>
 		<Platforms>AnyCPU;x64;x86</Platforms>
 		<RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
 	</PropertyGroup>
