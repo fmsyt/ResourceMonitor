@@ -23,7 +23,7 @@ namespace ResourceMonitor.Models.Resources
 
         public override float Current()
         {
-            return cpuCounter.NextValue();
+            return cpuCounter.NextValue() / 100;
         }
     }
 }
