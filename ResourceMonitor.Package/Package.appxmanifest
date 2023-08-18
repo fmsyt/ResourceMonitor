@@ -10,7 +10,7 @@
   <Identity
     Name="61bfd0c7-29f6-433d-b70d-f1cf5e057d25"
     Publisher="CN=yotta-rc.dev"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <Properties>
     <DisplayName>ResourceMonitor</DisplayName>
