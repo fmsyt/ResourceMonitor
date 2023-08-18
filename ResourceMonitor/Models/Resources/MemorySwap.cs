@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
@@ -8,23 +9,20 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
+    [SettingsGroupName("MemorySwap")]
     internal class MemorySwap : Resource
     {
-        protected ManagementClass mc;
-        protected ManagementObjectCollection? moc = null;
+        private readonly ManagementClass mc;
+        private ManagementObjectCollection? moc = null;
 
         public MemorySwap()
         {
-            Label = "Swap";
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 
         ~MemorySwap()
         {
-            if (moc != null)
-            {
-                moc.Dispose();
-            }
+            moc?.Dispose();
         }
 
         public override float Current()
@@ -34,7 +32,6 @@ namespace ResourceMonitor.Models.Resources
             float result = 0;
             foreach (ManagementObject mo in moc)
             {
-
                 var free = float.Parse(mo["FreeSpaceInPagingFiles"].ToString() ?? "0");
                 var total = float.Parse(mo["SizeStoredInPagingFiles"].ToString() ?? "0");
 

@@ -10,7 +10,7 @@ namespace ResourceMonitor.Configs
     internal class ConfigResourceBase : ApplicationSettingsBase
     {
         [UserScopedSetting()]
-        [DefaultSettingValue("Label")]
+        [DefaultSettingValue("")]
         public string Label
         {
             get { return (string)this["Label"]; }
@@ -31,6 +31,14 @@ namespace ResourceMonitor.Configs
         {
             get { return (string)this["Format"]; }
             set { this["Format"] = value; }
+        }
+
+        [UserScopedSetting()]
+        [DefaultSettingValue("True")]
+        public bool Visible
+        {
+            get { return (bool)this["Visible"]; }
+            set { this["Visible"] = value; }
         }
     }
 }

@@ -13,6 +13,13 @@ namespace ResourceMonitor.Models
     {
         public CurrentHandler? CurrentHandler = null;
 
+        public Resource() { 
+            if (this.Label == "")
+            {
+                this.Label = this.GetType().Name;
+            }
+        }
+
         public int Count { get; set; } = 0;
 
         public virtual float Current()
