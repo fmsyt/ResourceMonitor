@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace ResourceMonitor.Models.Resources
 {
     [SettingsGroupName("MemorySwap")]
-    internal class MemorySwap : Resource
+    internal class Swap : Resource
     {
         private readonly ManagementClass mc;
         private ManagementObjectCollection? moc = null;
 
-        public MemorySwap()
+        public Swap()
         {
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 
-        ~MemorySwap()
+        ~Swap()
         {
             moc?.Dispose();
         }

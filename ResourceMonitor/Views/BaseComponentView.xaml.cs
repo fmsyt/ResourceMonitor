@@ -39,7 +39,7 @@ namespace ResourceMonitor.Views
             {
                 new MonitorViewModel(new Cpu()),
                 new MonitorViewModel(new Memory()),
-                new MonitorViewModel(new MemorySwap()),
+                new MonitorViewModel(new Swap()),
                 new MonitorViewModel(new Gpu()),
             };
 
