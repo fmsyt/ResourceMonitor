@@ -17,7 +17,7 @@ namespace ResourceMonitor.ViewModels
 {
     internal class MonitorViewModel
     {
-        protected Resource resource;
+        public Resource Resource { get; protected set; }
 
         public LabelControl Label { get; protected set; } = new();
         public Label Current { get; protected set; } = new();
@@ -25,13 +25,13 @@ namespace ResourceMonitor.ViewModels
         protected LineSeries lineSeries = new LineSeries();
         public MonitorViewModel(Resource resource)
         {
-            this.resource = resource;
+            this.Resource = resource;
             Initialization();
         }
 
         protected void Initialization()
         {
-            var resource = this.resource;
+            var resource = this.Resource;
 
             Label.label.Content = resource.Label;
             Label.PostLabelChanged = (label) => resource.SaveLabel(label);
@@ -83,8 +83,8 @@ namespace ResourceMonitor.ViewModels
 
         public void UpdateCurrentContent()
         {
-            var current = resource.Current();
-            Current.Content = current.ToString(resource.Format);
+            var current = Resource.Current();
+            Current.Content = current.ToString(Resource.Format);
 
             lineSeries.Values.Add(new MeasureModel(current * 100));
             lineSeries.Values.RemoveAt(0);

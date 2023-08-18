@@ -1,6 +1,7 @@
 ﻿using Iot.Device.HardwareMonitor;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
+    [SettingsGroupName("Gpu")]
     internal class Gpu : Resource
     {
-        protected ProcessStartInfo StartInfo;
+        private readonly ProcessStartInfo StartInfo;
 
         public Gpu()
         {
-            Label = "GPU";
-
             StartInfo = new ProcessStartInfo
             {
                 FileName = @"nvidia-smi",

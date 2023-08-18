@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
@@ -8,23 +9,20 @@ using System.Threading.Tasks;
 
 namespace ResourceMonitor.Models.Resources
 {
+    [SettingsGroupName("Memory")]
     internal class Memory : Resource
     {
-        protected ManagementClass mc;
-        protected ManagementObjectCollection? moc = null;
+        private readonly ManagementClass mc;
+        private ManagementObjectCollection? moc = null;
 
         public Memory()
         {
-            Label = "Mem";
             mc = new ManagementClass("Win32_OperatingSystem");
         }
 
         ~Memory()
         {
-            if (moc != null)
-            {
-                moc.Dispose();
-            }
+            moc?.Dispose();
         }
 
         public override float Current()
@@ -34,7 +32,6 @@ namespace ResourceMonitor.Models.Resources
             float result = 0;
             foreach (ManagementObject mo in moc)
             {
-
                 var freePhysicalMemory = float.Parse(mo["FreePhysicalMemory"].ToString() ?? "0");
                 var totalVisibleMemorySize = float.Parse(mo["TotalVisibleMemorySize"].ToString() ?? "0");
 
